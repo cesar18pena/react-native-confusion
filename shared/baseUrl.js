@@ -1,1 +1,1 @@
-export const baseUrl = 'http://<Your Computer\'s IP address>:3001/'
+export const baseUrl = 'http://10.0.0.4:3001/'

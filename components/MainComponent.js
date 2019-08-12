@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Platform, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Platform, Image, StyleSheet, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
 import Contact from './ContactComponent';

@@ -3,7 +3,6 @@ import { FlatList, ScrollView, Text, View } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
-import console = require('console');
 
 class DishDetail extends Component {
 
