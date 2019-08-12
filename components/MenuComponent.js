@@ -2,29 +2,23 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { DISHES } from '../shared/dishes';
+import Loading from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-
-const mapStateToProps = state => {
-  return {
-    dishes: state.dishes
-  }
-}
+import { withNavigation } from 'react-navigation';
 
 class Menu extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES
-    };
-  }
 
   static navigationOptions = {
     title: 'Menu'
   };
 
   render() {
+
+    let navigate = undefined;
+    if(this.props.navigation !== undefined){
+      console.log('Hello Props', this.props.navigation);
+      navigate = this.props.navigation.navigate;
+    };
 
     const renderMenuItem = ({ item, index}) => {
       return (
@@ -33,22 +27,42 @@ class Menu extends Component {
           title={item.name}
           caption={item.description}
           featured
-          onPress={() => navigate('Dishdetail', { dishId: item.id })}
+          onPress={() => navigate('DishDetail', { dishId: item.id })}
           imageSrc={{ uri: baseUrl + item.image}}
         />
       )
     }
 
-    const { navigate } = this.props.navigation;
+    if (this.props.dishes.isLoading) {
+      return(
+        <Loading />
+      );
+    }
 
-    return (
-      <FlatList
-        data={this.props.dishes.dishes}
-        renderItem={renderMenuItem}
-        keyExtractor={item => item.id.toString()}
-      />
-    )
+    else if (this.props.dishes.errMess) {
+      return(
+        <View>            
+          <Text>{this.props.dishes.errMess}</Text>
+        </View>            
+      );
+    }
+
+    else {
+      return (
+        <FlatList
+          data={this.props.dishes.dishes}
+          renderItem={renderMenuItem}
+          keyExtractor={item => item.id.toString()}
+        />
+      )
+    }
   }
 }
 
-export default connect(mapStateToProps)(Menu);
+const mapStateToProps = state => {
+  return {
+    dishes: state.dishes
+  }
+}
+
+export default withNavigation(connect(mapStateToProps)(Menu));

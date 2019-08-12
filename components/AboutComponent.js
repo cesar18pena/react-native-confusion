@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { FlatList, ScrollView, Text, View} from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { LEADERS } from '../shared/leaders';
 import { connect } from 'react-redux';
+import Loading from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 const mapStateToProps = state => {
@@ -55,19 +55,44 @@ class AboutUs extends Component {
         );
       };
 
-      return (
-        <ScrollView>
-          <History />
-          <Card title='Corporate Leadership'>
-            <FlatList
+      if (this.props.leaders.isLoading) {
+        return(
+          <ScrollView>
+            <History />
+            <Card
+              title='Corporate Leadership'>
+              <Loading />
+            </Card>
+          </ScrollView>
+        );
+      }
+      else if (this.props.leaders.errMess) {
+        return(
+          <ScrollView>
+            <History />
+            <Card
+              title='Corporate Leadership'>
+              <Text>{this.props.leaders.errMess}</Text>
+            </Card>
+          </ScrollView>
+        );
+      }
+      else {
+        return(
+          <ScrollView>
+            <History />
+            <Card
+              title='Corporate Leadership'>
+            <FlatList 
               data={this.props.leaders.leaders}
               renderItem={renderLeaderItem}
               keyExtractor={item => item.id.toString()}
             />
-          </Card>
-        </ScrollView>
-        )
-    }
+            </Card>
+          </ScrollView>
+        );
+      }
+  }
 }
 
 export default connect(mapStateToProps)(AboutUs);

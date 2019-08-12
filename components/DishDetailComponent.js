@@ -3,6 +3,7 @@ import { FlatList, ScrollView, Text, View } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { withNavigation } from 'react-navigation';
 
 const mapStateToProps = state => {
   return {
@@ -96,4 +97,4 @@ function RenderComments(props) {
   );
 }
 
-export default connect(mapStateToProps)(DishDetail);
+export default withNavigation(connect(mapStateToProps)(DishDetail));

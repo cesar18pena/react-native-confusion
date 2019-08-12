@@ -3,6 +3,7 @@ import { View, Text, Platform, Image, StyleSheet, ScrollView } from 'react-nativ
 import { Icon } from 'react-native-elements';
 import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import AboutUs from './AboutComponent';
 import Contact from './ContactComponent';
 import DishDetail from './DishDetailComponent';
@@ -17,42 +18,17 @@ const mapStateToProps = state => {
     promotions: state.promotions,
     leaders: state.leaders
   }
-}
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchDishes: () => dispatch(fetchDishes()),
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
   fetchLeaders: () => dispatch(fetchLeaders()),
-})
-
-const MenuNavigator = createStackNavigator({
-  Menu: { 
-    screen: Menu,
-    navigationOptions: ({navigation}) => ({
-      headerLeft: <Icon 
-        name='menu' 
-        size={24} 
-        color='white' 
-        onPress={() => navigation.toggleDrawer()} />
-    })
-  },
-  DishDetail: { screen: DishDetail }
-}, {
-  initialRouteName: 'Menu',
-  navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#512DA8'
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      color: '#fff'
-    }
-  }
 });
 
 const HomeNavigator = createStackNavigator({
-  Home: { screen: Home }
+  Home: { screen: () => <Home /> }
 }, {
   navigationOptions: ({ navigation }) => ({
     headerStyle: {
@@ -70,8 +46,34 @@ const HomeNavigator = createStackNavigator({
   })
 });
 
+
+const MenuNavigator = createStackNavigator({
+  Menu: { 
+    screen: () => <Menu />,
+    navigationOptions: ({navigation}) => ({
+      headerLeft: <Icon 
+        name='menu' 
+        size={24} 
+        color='white' 
+        onPress={() => navigation.toggleDrawer()} />
+    })
+  },
+  DishDetail: { screen: () => <DishDetail /> }
+}, {
+  initialRouteName: 'Menu',
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#512DA8'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      color: '#fff'
+    }
+  }
+});
+
 const ContactNavigator = createStackNavigator({
-  Contact: { screen: Contact }
+  Contact: { screen: () => <Contact /> }
 }, {
   navigationOptions: ({ navigation }) => ({
     headerStyle: {
@@ -90,7 +92,7 @@ const ContactNavigator = createStackNavigator({
 });
 
 const AboutUsNavigator = createStackNavigator({
-  AboutUs: { screen: AboutUs}
+  AboutUs: { screen: () => <AboutUs />}
 },
 {
   navigationOptions: ({navigation}) => ({
@@ -125,7 +127,7 @@ const CustomDrawerContentComponent = (props) => (
   </ScrollView>
 );
 
-const MainNavigator = createDrawerNavigator({
+export const MainNavigator = createDrawerNavigator({
   Home: 
     { screen: HomeNavigator,
       navigationOptions: {
@@ -235,4 +237,6 @@ class Main extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default compose (
+  connect(mapStateToProps, mapDispatchToProps),
+)(Main);
