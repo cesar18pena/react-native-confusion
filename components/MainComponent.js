@@ -237,6 +237,4 @@ class Main extends Component {
   }
 }
 
-export default compose (
-  connect(mapStateToProps, mapDispatchToProps),
-)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

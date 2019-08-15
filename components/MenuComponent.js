@@ -13,12 +13,7 @@ class Menu extends Component {
   };
 
   render() {
-
-    let navigate = undefined;
-    if(this.props.navigation !== undefined){
-      console.log('Hello Props', this.props.navigation);
-      navigate = this.props.navigation.navigate;
-    };
+    const { navigate } = this.props.navigation;
 
     const renderMenuItem = ({ item, index}) => {
       return (
