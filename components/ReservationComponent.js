@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Picker, Switch, Button, Alert, ScrollView } from 'react-native';
-import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable';
+import DatePicker from 'react-native-datepicker';
 
 class Reservation extends Component {
 
@@ -115,25 +115,6 @@ class Reservation extends Component {
   }
 };
 
-// const modalComponent = () => {
-//   <Modal animationType={"slide"} transparent={false}
-//     visible={this.state.showModal}
-//     onDismiss={() => this.toggleModal()}
-//     onRequestClose={() => this.toggleModal()}>
-//     <View style={styles.modal}>
-//       <Text style={styles.modalTitle}>Your Reservation</Text>
-//       <Text style={styles.modalText}>Number of Guests: {this.state.guests}</Text>
-//       <Text style={styles.modalText}>Smoking?: {this.state.smoking ? 'Yes' : 'No'}</Text>
-//       <Text style={styles.modalText}>Date and Time: {this.state.date}</Text>
-//       <Button
-//         onPress={() => { this.toggleModal(); this.resetForm(); }}
-//         color="#512DA8"
-//         title="Close"
-//       />
-//     </View>
-//   </Modal>
-// };
-
 const styles = StyleSheet.create({
   formRow: {
     alignItems: 'center',
@@ -148,22 +129,6 @@ const styles = StyleSheet.create({
   },
   formItem: {
     flex: 1
-  },
-  modal: {
-    justifyContent: 'center',
-    margin: 20
-  },
-  modalTitle: {
-    backgroundColor: '#512DA8',
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center'
-  },
-  modalText: {
-    fontSize: 18,
-    margin: 10
   }
 });
 
