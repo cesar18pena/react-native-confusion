@@ -143,12 +143,13 @@ function RenderDish(props) {
 
   handleViewRef = ref => this.view = ref;
 
-  const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
-    if (dx < -200)
-      return true;
-    else
-      return false;
-  };
+  const recognizeDrag = ({ moveX, moveY, dx, dy}) => {
+    if (dx < -200) // indicates a right to left gesture of more than 200
+        return 'right-to-left-animation';
+    else if (dx > 200)
+        return 'left-to-right-animation';
+    else return false
+  }
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: (e, gestureState) => {
@@ -160,7 +161,7 @@ function RenderDish(props) {
     },
     onPanResponderEnd: (e, gestureState) => {
       console.log("pan responder end", gestureState);
-      if (recognizeDrag(gestureState))
+      if (recognizeDrag(gestureState) === 'right-to-left-animation') {
         Alert.alert(
           'Add Favorite',
           'Are you sure you wish to add ' + dish.name + ' to favorite?',
@@ -170,6 +171,10 @@ function RenderDish(props) {
           ],
           { cancelable: false }
         );
+      } 
+      else if (recognizeDrag(gestureState) === 'left-to-right-animation') {
+        props.onCommentPress();
+      }
       return true;
     }
   });
