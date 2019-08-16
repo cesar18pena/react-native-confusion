@@ -60,8 +60,6 @@ class Home extends Component {
 
     render() {
 
-      console.log('HI PEOPLE', this.props.navigation);
-
       return(
         <ScrollView>
           <RenderItem 
