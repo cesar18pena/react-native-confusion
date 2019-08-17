@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Button, Card, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 
  class ContactUs extends Component {
