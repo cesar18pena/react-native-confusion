@@ -2034,10 +2034,22 @@ expo-location@~6.0.0:
   dependencies:
     invariant "^2.2.4"
 
+expo-mail-composer@~6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/expo-mail-composer/-/expo-mail-composer-6.0.0.tgz#cb79499772818f23a00cdb2db8b4f7a75a26ef07"
+  integrity sha512-UHacya/0iR9KBIxOD6OszZTqxRu4Qir6Gmr+Z1UCeF5dXcbd6BCC0TPbwrshGVXuF7IjwGYATEtZ1JK5CQ3kbg==
+  dependencies:
+    query-string "^6.2.0"
+
 expo-permissions@~6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-6.0.0.tgz#2943f1aa98de833b88cea73cf03d18d08957cb68"
   integrity sha512-O+RdyfGiq7i+5Vi9fE38DgKn436lNWiqhnS5/Z7CC00bmKahhjVMNDbZvNn/nrdRGyaPneJk1Co1s1sexSnv0A==
+
+expo-secure-store@~6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-6.0.0.tgz#0879320b1b12196dec67f02c3386a8a8918ff1ee"
+  integrity sha512-UCtxUio+c9iE+fgRpxStGbC+Ci83mlv0kh3cVEq/KbFejGPmMZ0u7oCykGqVDoPzvgTGrP1ZyJb0mwYfamXwmA==
 
 expo-sqlite@~6.0.0:
   version "6.0.0"
@@ -4151,7 +4163,7 @@ qs@^6.5.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-query-string@^6.1.0:
+query-string@^6.1.0, query-string@^6.2.0:
   version "6.8.2"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.8.2.tgz#36cb7e452ae11a4b5e9efee83375e0954407b2f6"
   integrity sha512-J3Qi8XZJXh93t2FiKyd/7Ec6GNifsjKXUsVFkSBj/kjLsDylWhnCz4NT1bkPcKotttPW+QbKGqqPH8OoI2pdqw==
