@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import DatePicker from 'react-native-datepicker';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
+import * as Calendar from 'expo-calendar';
 
 class Reservation extends Component {
 
@@ -64,6 +65,7 @@ class Reservation extends Component {
           text: 'OK',
           onPress: () => {
             this.presentLocalNotification(this.state.date);
+            this.addReservationIntoCalendar(this.state.date);
             this.resetForm();
           }
         }
@@ -79,6 +81,35 @@ class Reservation extends Component {
       date: '',
       showModal: false
     });
+  }
+
+  obtainCalendarPermission = async () => {
+    const permission = await Permissions.askAsync(Permissions.CALENDAR);
+    if (permission.status !== 'granted') {
+      Alert.alert('Calendar access is not granted!');
+    }
+    return permission;
+  }
+
+  addReservationIntoCalendar = async (date) => {
+    await this.obtainCalendarPermission();
+
+    const startTime = new Date(Date.parse(date));
+    const endTime = new Date(Date.parse(date) + (2 * 3600 * 1000));
+
+    /**
+     * For now this function createEventAsync is only working correctly in Android
+     * It is presenting some problem with iOS about missing id of the target calendar
+     * Similar error is here https://github.com/expo/expo/issues/5301
+     */
+    
+    Calendar.createEventAsync(Calendar.DEFAULT, {
+      title: 'Con Fusion Table Reservation',
+      startDate: startTime,
+      endDate: endTime,
+      timeZone: 'Asia/Hong_Kong',
+      location: '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong'
+    })
   }
 
   render() {
